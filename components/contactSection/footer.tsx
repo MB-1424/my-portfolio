@@ -6,15 +6,15 @@ export function Footer({ className }: { className?: string }) {
   return (
     <footer
       className={cn(
-        "footer__links absolute flex  w-full flex-wrap   px-paddingX mix-blend-difference ",
+        "footer__links relative mt-auto flex w-full flex-wrap items-start gap-2 px-paddingX pb-4 text-center mix-blend-difference md:mt-0 md:absolute md:flex-row md:items-end md:gap-4 md:pb-0",
         className,
       )}
     >
-      <div className="relative mx-auto flex w-full max-w-maxWidth items-end gap-4 py-1 md:py-2">
-        <div className="flex-1">
+      <div className="relative mx-auto flex w-full max-w-maxWidth flex-wrap items-start gap-4 py-2 md:flex-row md:items-end md:justify-between md:gap-4 md:py-2">
+        <div className="w-1/2 min-w-[180px] md:w-auto md:flex-none md:self-end md:pb-[6px]">
           <FooterGroup
             title="SOCIALS"
-            className="pb-0 md:py-0"
+            className="items-start pb-0 text-left md:items-start md:text-left"
             isMagnetic={true}
             links={[
               { href: links.email, text: "Email" },
@@ -24,10 +24,19 @@ export function Footer({ className }: { className?: string }) {
             ]}
           />
         </div>
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-center text-xs font-semibold text-[#a3a3a3] md:text-sm">
+
+        <div className="w-1/2 min-w-[180px] flex justify-end md:w-auto md:flex-none md:self-end">
+          <FooterGroup
+            title=""
+            className="items-start pb-0 text-left md:items-end md:py-0 md:text-right"
+            isMagnetic={true}
+            links={[{ href: "/CV/CV_AbdulrahmanMahyoub.AR2.pdf", text: "OPEN MY CV" }]}
+          />
+        </div>
+
+        <div className="w-full text-center text-xs font-semibold text-[#a3a3a3] md:absolute md:bottom-0 md:left-1/2 md:-translate-x-1/2 md:text-sm">
           © AB.MAHYOUB
         </div>
-        <div className="flex-1" />
       </div>
     </footer>
   );

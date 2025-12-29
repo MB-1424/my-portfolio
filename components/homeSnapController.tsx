@@ -11,6 +11,9 @@ const slideEase = CustomEase.create("homeSlide", "M0,0 C0.52,0.01 0.16,1 1,1 ");
 
 export function HomeSnapController() {
   useEffect(() => {
+    const snapAllowed = window.matchMedia("(min-width: 768px)").matches;
+    if (!snapAllowed) return;
+
     const ctx = gsap.context(() => {
       // Snap across all sections so each fills the viewport (Hero, Work projects, Contact).
       const sections = gsap.utils.toArray<HTMLElement>(".section");

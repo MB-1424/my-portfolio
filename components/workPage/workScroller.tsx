@@ -54,6 +54,7 @@ export function WorkScroller({ enableSnap = true }: { enableSnap?: boolean }) {
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+    const snapAllowed = window.matchMedia("(min-width: 768px)").matches;
 
     const ctx = gsap.context(() => {
       const sections = gsap.utils.toArray<HTMLElement>(".work-scroll-section", container);
@@ -70,7 +71,7 @@ export function WorkScroller({ enableSnap = true }: { enableSnap?: boolean }) {
       });
 
       // Smooth snap to each work section while the block is in view, then release to native scroll when leaving.
-      if (enableSnap && sections.length > 1) {
+      if (enableSnap && snapAllowed && sections.length > 1) {
         const snapPoints = sections.map((sec) => {
           const top = sec.offsetTop - container.offsetTop;
           return top / Math.max(container.offsetHeight, 1);
