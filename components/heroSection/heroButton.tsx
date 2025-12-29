@@ -38,8 +38,8 @@ export function HeroButton({}) {
       className={`${siteFont.className} email_section1 anime isolate z-20  rounded-full !text-[clamp(16px,_1vw_+_14px,_24px)] md:bg-[#272727]`}
       onMouseEnter={() => rotateImageRef.current?.play()}
       onMouseLeave={() => rotateImageRef.current?.pause()}
-      href="/CV/CV_AbdulrahmanMahyoub.AR.pdf"
-      download="CV_AbdulrahmanMahyoub.AR.pdf"
+      href="/CV/CV_AbdulrahmanMahyoub.AR2.pdf"
+      download="CV_AbdulrahmanMahyoub.AR2.pdf"
     >
       <div className="shapka !flex items-center justify-center gap-[3.5rem]">
         <div className="round hidden items-center justify-center md:flex">

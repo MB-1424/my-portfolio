@@ -208,7 +208,7 @@ export default function AboutSection() {
                       </ul>
                     </div>
 
-                    <div className="mx-auto mt-3 h-20 w-20 self-start sm:mx-0 sm:mt-0 sm:h-24 sm:w-24 md:h-[120px] md:w-[120px] md:self-auto">
+                    <div className="mx-auto mt-3 h-20 w-20 self-start sm:mx-0 sm:mt-0 sm:h-24 sm:w-24 md:h-[180px] md:w-[180px] md:self-auto">
                       <TiltedCard
                         imageSrc={experience.logoSrc}
                         altText={`${experience.title} logo`}
