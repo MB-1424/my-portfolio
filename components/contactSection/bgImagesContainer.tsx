@@ -9,12 +9,6 @@ import { getRandRgb, getRandValues, shuffle } from "@/lib/utils";
 
 const bgImagesData = [
   {
-    id: 1,
-    imgLink: "/svg_logo/after-effects-logo.svg",
-    title: "",
-    subtitle: "",
-  },
-  {
     id: 2,
     imgLink: "/svg_logo/attributes-logo.svg",
     title: "",
@@ -22,7 +16,7 @@ const bgImagesData = [
   },
   {
     id: 3,
-    imgLink: "/svg_logo/client-first-logo.svg",
+    imgLink: "/svg_logo/n8n-color.svg",
     title: "",
     subtitle: "",
   },
@@ -46,7 +40,7 @@ const bgImagesData = [
   },
   {
     id: 7,
-    imgLink: "/svg_logo/mailchimp-logo.svg",
+    imgLink: "/svg_logo/github (1).png",
     title: "",
     subtitle: "",
   },
@@ -70,13 +64,13 @@ const bgImagesData = [
   },
   {
     id: 11,
-    imgLink: "/svg_logo/spline-logo.svg",
+    imgLink: "/svg_logo/python-svgrepo-com.svg",
     title: "",
     subtitle: "",
   },
   {
     id: 12,
-    imgLink: "/svg_logo/rive-logo.svg",
+    imgLink: "/svg_logo/tailwind-logo.svg",
     title: "",
     subtitle: "",
   },

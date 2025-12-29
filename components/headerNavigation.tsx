@@ -2,14 +2,16 @@ import React, { use, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { Header } from "./header";
-import { useAppSelector } from "@/hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
 import { Footer } from "./contactSection/footer";
 import Magentic from "./ui/magentic";
 import { isDesktop } from "@/lib/utils";
 import { link } from "fs";
 import { links } from "@/data/data";
+import { toggleMenu } from "@/redux/states/menuSlice";
 export function HeaderNavigation() {
   const { isMenuOpen, color } = useAppSelector((state) => state.menuReducer);
+  const dispatch = useAppDispatch();
   const possibleTailwindClasses = [
     "text-colorDark",
     "text-colorLight",
@@ -72,6 +74,19 @@ export function HeaderNavigation() {
     }
   }, [isMenuOpen]);
 
+  const scrollToId = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const scrollAndCloseMenu = (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    scrollToId(id);
+    dispatch(toggleMenu({ isMenuOpen: false }));
+  };
+
   const headerData = [
     {
       name: "Home",
@@ -80,15 +95,19 @@ export function HeaderNavigation() {
 
     {
       name: "Work",
-      href: links.work,
+      href: "#huna-aseer",
+      onClick: scrollAndCloseMenu("huna-aseer"),
     },
     {
       name: "Contact",
-      href: links.email,
+      href: "#contact",
+      onClick: scrollAndCloseMenu("contact"),
     },
     {
-      name: "Twitter/X",
-      href: links.twitter,
+      name: "LinkedIn",
+      href: links.linkedin,
+      target: "_blank",
+      rel: "noreferrer",
     },
   ];
   return (
@@ -107,19 +126,22 @@ export function HeaderNavigation() {
             {headerData.map((data) => (
               <li className="headerAnimate" key={data.name}>
                 <Magentic
-                  className={`text-[clamp(32px,_3.3vw_+_32px,_88px)] font-bold text-color${
-                    color == "Light" ? "Dark" : "Light"
-                  }`}
-                  scrambleParams={{
-                    text: data.name,
-                    chars: "-xx",
-                  }}
-                  href={data.href}
-                >
-                  <span className="scrambleText">{data.name}</span>
-                </Magentic>
-              </li>
-            ))}
+                className={`text-[clamp(32px,_3.3vw_+_32px,_88px)] font-bold text-color${
+                  color == "Light" ? "Dark" : "Light"
+                }`}
+                scrambleParams={{
+                  text: data.name,
+                  chars: "-xx",
+                }}
+                href={data.href}
+                onClick={data.onClick}
+                target={data.target}
+                rel={data.rel}
+              >
+                <span className="scrambleText">{data.name}</span>
+              </Magentic>
+            </li>
+          ))}
           </ul>
         </nav>
 

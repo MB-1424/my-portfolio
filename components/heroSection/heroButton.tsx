@@ -3,6 +3,13 @@ import Image from "next/image";
 import Magentic from "../ui/magentic";
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
+import localFont from "next/font/local";
+
+const siteFont = localFont({
+  src: "../../font/helvetica/HelveticaNowDisplay-Medium.woff2",
+  style: "normal",
+  weight: "500",
+});
 
 export function HeroButton({}) {
   const rotateImageRef = useRef<gsap.core.Timeline | null>(null);
@@ -28,29 +35,18 @@ export function HeroButton({}) {
   return (
     <Magentic
       strength={50}
-      className="email_section1 anime isolate z-20  rounded-full !text-[clamp(16px,_1vw_+_14px,_24px)] md:bg-[#272727]"
+      className={`${siteFont.className} email_section1 anime isolate z-20  rounded-full !text-[clamp(16px,_1vw_+_14px,_24px)] md:bg-[#272727]`}
       onMouseEnter={() => rotateImageRef.current?.play()}
       onMouseLeave={() => rotateImageRef.current?.pause()}
-      href="#second"
-      scrambleParams={[
-        {
-          text: "Check out",
-          chars: "-x",
-        },
-        {
-          text: "Latest Work",
-          chars: "-x",
-        },
-      ]}
+      href="/CV/CV_AbdulrahmanMahyoub.AR.pdf"
+      download="CV_AbdulrahmanMahyoub.AR.pdf"
     >
       <div className="shapka !flex items-center justify-center gap-[3.5rem]">
         <div className="round hidden items-center justify-center md:flex">
-          <p className="absolute left-[37%] whitespace-nowrap text-[21px]">
-            <span>
-              <span className="scrambleText">Check out</span>
-              <br />
-              <span className="scrambleText">Latest Work</span>
-            </span>
+          <p className="absolute left-[37%] whitespace-nowrap text-[30px] font-semibold">
+            <span>Open my</span>
+            <br />
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CV</span>
           </p>
         </div>
         <div className="round flex items-center  justify-end md:justify-center ">

@@ -3,12 +3,14 @@ import { HeroButton } from "./heroButton";
 import { HeroMarquee } from "./heroMarquee";
 export function HeroWrapper({}) {
   return (
-    <main className="section1__wrapper relative max-w-maxWidth grow ">
+    <main className="section1__wrapper relative max-w-maxWidth grow">
       <div className="myImage"></div>
       <HeroButton />
-      <h2 className="left mask pointer-events-none z-20 pt-20">
+      <h1 className="left mask pointer-events-none z-20 pt-20 font-extrabold">
         <div className="free anime">
-          Freelance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          ABDULRAHMAN
+          <br />
+          MAHYOUB.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
         <div className="animation__wrapper anime">
           <span className="animate__this animate__this1 left-0">
@@ -20,7 +22,7 @@ export function HeroWrapper({}) {
           </span>
           <span>&nbsp;</span>
         </div>
-      </h2>
+      </h1>
       <HeroMarquee />
     </main>
   );

@@ -3,21 +3,39 @@ import Magentic from "@/components/ui/magentic";
 import { Header } from "@/components/header";
 import { Bulge } from "../bulge";
 import { cn } from "@/lib/utils";
+
+export type WorkProject = {
+  id: string;
+  title: React.JSX.Element;
+  description: string | React.JSX.Element;
+  link: string;
+  imageLink: string;
+  modalTitle: string;
+  subtitle?: string;
+  tags?: string[];
+  problem?: string;
+  solution?: string;
+  highlights?: string[];
+  techStack?: string[];
+  role?: string;
+  outcomes?: string[];
+  gallery?: string[];
+};
+
 export function WorkSection({
   index,
   item,
   color,
   length,
+  sectionIndex,
+  onShowMore,
 }: {
   index: number;
-  item: {
-    title: React.JSX.Element;
-    description: string | React.JSX.Element;
-    link: string;
-    imageLink: string;
-  };
+  item: WorkProject;
   color: "Dark" | "Light";
   length: number;
+  sectionIndex?: number;
+  onShowMore: (project: WorkProject) => void;
 }) {
   const possibleTailwindClasses = [
     "text-colorDark",
@@ -30,10 +48,11 @@ export function WorkSection({
 
   return (
     <div
-      className={`section s${index} ${
+      className={`section work-scroll-section s${sectionIndex ?? index} ${
         color == "Dark" ? "lightGradient" : "darkGradient"
       }
       text-color${color} `}
+      id={item.id}
       key={item.link}
     >
       <Header color={color}></Header>
@@ -44,12 +63,10 @@ export function WorkSection({
           className={`fullpage__slide mx-auto max-w-maxWidth
           `}
         >
-          <a
+          <div
             className={`image image--works image--works${
               index + 1
             } anime rounded-3xl `}
-            target="_blank"
-            href={item.link}
             style={{
               background: `url(${item.imageLink}) center center / contain no-repeat`,
             }}
@@ -62,7 +79,7 @@ export function WorkSection({
               <div className="mask absolute left-0 top-0 -z-10 h-full w-full rounded-2xl bg-colorSecondaryDark"></div>
               <p className="p-8 text-colorLight ">0{index + 1}</p>
             </div>
-          </a>
+          </div>
           <div className="title ">
             <h2 className="title__text js-letter anime mask font-bold tracking-tight">
               {item.title}
@@ -79,12 +96,23 @@ export function WorkSection({
                 className={`btn text-color${
                   color === "Dark" ? "Light" : "Dark"
                 } bg-color${color} mask`}
-                href={item.link}
-                target="_blank"
-                scrambleParams={{ text: "Show Me", chars: "-x" }}
+                href="#"
+                role="button"
+                tabIndex={0}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onShowMore(item);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    onShowMore(item);
+                  }
+                }}
+                scrambleParams={{ text: "Show More", chars: "-x" }}
               >
                 <p className="shapka">
-                  <span className="scrambleText">Show Me</span>
+                  <span className="scrambleText">Show More</span>
                   <svg
                     className="ml-4 inline w-[0.8em] -rotate-[75deg] text-inherit" // width="34px"
                     // height="34px"
@@ -132,6 +160,7 @@ export function WorkSection({
           .map((_, i) => {
             return (
               <div
+                key={i}
                 className={cn(
                   `h-4 w-1 bg-colorSecondary${color} rounded-full`,
                   ` ${i === index ? `h-10 bg-color${color}` : ""}`,

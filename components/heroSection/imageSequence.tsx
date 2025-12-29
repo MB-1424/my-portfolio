@@ -1,3 +1,15 @@
+import React from "react";
+
+// Statue image-sequence disabled; preserved below for reference only.
+export function ImageSequence({
+  sectionRef,
+}: {
+  sectionRef: React.RefObject<HTMLDivElement>;
+}) {
+  return null;
+}
+
+/*
 import React, { use, useEffect } from "react";
 import gsap from "gsap";
 
@@ -11,10 +23,7 @@ export function ImageSequence({
       "hero-lightpass",
     ) as HTMLCanvasElement;
     const context = canvas.getContext("2d");
-    // const frameCount = 147;
     const frameCount = 120;
-    // const currentFrame = (index: number) =>
-    //   `https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/${(index + 1).toString().padStart(4, "0")}.jpg`;
     const currentFrame = (index: number) =>
       `/modal_seq/${index.toString().padStart(3, "0")}.avif`;
 
@@ -45,14 +54,13 @@ export function ImageSequence({
         frameCount - 1,
         mousePositionX,
       );
-      console.log(mappedX, mousePositionX);
 
-      gsap.to(airpods, {
+        gsap.to(airpods, {
         frame: mappedX - 1,
         snap: "frame",
         ease: "none",
         duration: 0.2,
-        onUpdate: render, // use animation onUpdate instead of scrollTrigger's onUpdate
+        onUpdate: render,
       });
     };
 
@@ -65,7 +73,6 @@ export function ImageSequence({
     };
   }, []);
 
-  // const { isActive } = useAppSelector((state) => state.splineReducer);
   return (
     <div className="contrast-110 absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center grayscale">
       <canvas
@@ -77,3 +84,4 @@ export function ImageSequence({
     </div>
   );
 }
+*/

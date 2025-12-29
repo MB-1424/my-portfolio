@@ -44,7 +44,7 @@ export function WorkWrapper({}) {
           </div>
         </a>
       </div>
-      <div className="section3__video anime ">
+      {/* <div className="section3__video anime ">
         <video
           className="rounded-3xl  md:rounded-[3rem]"
           id="video"
@@ -54,7 +54,7 @@ export function WorkWrapper({}) {
           loop
           src="/video/transcode.mp4"
         ></video>
-      </div>
+      </div> */}
     </main>
   );
 }

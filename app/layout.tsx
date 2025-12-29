@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import GoogleAnalytics from "@/app/GoogleAnalytics";
@@ -22,9 +22,14 @@ const helvetica = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Vipul Kumar • Developer",
+  title: "MAHYOUB•PORTFOLIO",
   description:
     "Vipul Kumar is a developer who creates beautiful and pixel perfect websites with zero effort in reviews.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -45,10 +50,10 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
           rel="stylesheet"
         ></link>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no"
-        ></meta>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+          rel="stylesheet"
+        ></link>
         <GoogleAnalytics />
       </head>
 

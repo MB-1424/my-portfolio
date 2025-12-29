@@ -1,5 +1,24 @@
-<svg  viewBox="0 0 736 720" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="373.689" cy="360.711" r="285.289" stroke="currentColor" stroke-width="63"/>
-<path d="M114.133 488.356L505.244 104M253.156 606.4L629.689 230.578" stroke="currentColor" stroke-width="63"/>
-<path d="M106.311 468.8L518.4 455.644V527.822H602.311" stroke="currentColor" stroke-width="63"/>
+<svg viewBox="0 0 420 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <text
+    x="50%"
+    y="82"
+    text-anchor="middle"
+    fill="currentColor"
+    font-family="'DM Sans','Satoshi','Helvetica','Arial',sans-serif"
+    font-weight="800"
+    font-size="72"
+    letter-spacing="6"
+  >
+    MAHYOUB
+  </text>
+  <line
+    x1="40"
+    x2="380"
+    y1="94.5"
+    y2="94.5"
+    stroke="currentColor"
+    stroke-width="10"
+    stroke-linecap="round"
+    opacity="0.65"
+  />
 </svg>

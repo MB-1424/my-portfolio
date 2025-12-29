@@ -230,20 +230,17 @@ const FullpageProvider = ({ children }: { children: React.ReactNode }) => {
       lineClass: "innnerLine",
     });
 
-    textAnim__section2__down.current = gsap.from(
-      "#my-text .line .innnerLine",
-      1.5,
-      {
-        y: "200%",
-        opacity: 0,
-        skewX: -10,
-        // scaleY: 1.5,
-        paused: true,
-        delay: 0.25,
-        stagger: 0.12,
-        ease: CustomEase.create("custom", "M0,0,C0.5,0,0,1,1,1"),
-      },
-    );
+    textAnim__section2__down.current = gsap.from("#my-text .line .innnerLine", {
+      duration: 1.5,
+      y: "200%",
+      opacity: 0,
+      skewX: -10,
+      // scaleY: 1.5,
+      paused: true,
+      delay: 0.25,
+      stagger: 0.12,
+      ease: CustomEase.create("custom", "M0,0,C0.5,0,0,1,1,1"),
+    });
 
     work_heading.current = gsap.fromTo(
       ".work_heading",

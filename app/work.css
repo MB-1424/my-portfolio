@@ -339,3 +339,199 @@ ul {
     height: 32px;
   }
 }
+
+.project-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 9999;
+}
+
+.requestCard {
+  width: min(820px, 96vw);
+  background: rgba(255, 255, 255, 0.011);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.112);
+  border-radius: 32px;
+  backdrop-filter: blur(8px);
+  padding: 20px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.modalCard {
+  position: relative;
+  max-height: 92vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modalClose {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: #fff;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.modalClose:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
+}
+
+.modalHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 36px;
+}
+
+.modalTitle {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.modalSubtitle {
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.5;
+}
+
+.modalTags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.modalTag {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.modalBody {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+  min-height: 0;
+  padding-right: 6px;
+  margin-right: -2px;
+  padding-bottom: 72px;
+  scroll-padding-bottom: 72px;
+  position: relative;
+}
+
+.modalImageContainer {
+  width: 100%;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.modalImageGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.modalImagePlaceholder {
+  width: 100%;
+  min-height: 200px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.86);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.modalImagePlaceholder.hasImage {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: transparent;
+}
+
+.modalImageContainer.isScrolled {
+  transform: translateY(-8px) scale(0.96);
+}
+
+.modalImageContainer.isScrolled .modalImagePlaceholder {
+  min-height: 140px;
+}
+
+.modalScrollFade {
+  position: absolute;
+  pointer-events: none;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 48px;
+  background: transparent;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 12px;
+}
+
+.modalScrollArrow {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 800;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.12);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.modalScrollArrow.is-hidden {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.modalSection {
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.modalSectionLabel {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 800;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  margin-bottom: 6px;
+}
+
+.modalSectionText {
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.9);
+}

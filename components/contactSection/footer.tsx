@@ -1,27 +1,8 @@
 import { FooterGroup } from "@/components/contactSection/footerGroup";
 import { links } from "@/data/data";
-import { cn, getJoinedDate } from "@/lib/utils";
-import React, { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
+import React from "react";
 export function Footer({ className }: { className?: string }) {
-  const [currentTime, setCurrentTime] = useState("");
-
-  useEffect(() => {
-    const options: Intl.DateTimeFormatOptions[] = [
-      { month: "short", day: "numeric" },
-      { hour: "numeric", minute: "numeric" },
-    ];
-
-    setCurrentTime(getJoinedDate(options));
-
-    const interval = setInterval(() => {
-      setCurrentTime(getJoinedDate(options));
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
   return (
     <footer
       className={cn(
@@ -29,30 +10,24 @@ export function Footer({ className }: { className?: string }) {
         className,
       )}
     >
-      <div className="mx-auto flex w-full max-w-maxWidth gap-0 md:gap-12">
-        <FooterGroup
-          title="LOCAL TIME"
-          className="hidden md:block"
-          links={[{ href: "", text: currentTime }]}
-        />
-        <FooterGroup
-          className="hidden md:block"
-          title="OPEN SOURCE"
-          isMagnetic={true}
-          links={[{ href: links.sourceCode, text: "View on GitHub" }]}
-        />
-
-        <FooterGroup
-          title="SOCIALS"
-          className="md:ml-auto"
-          isMagnetic={true}
-          links={[
-            { href: links.email, text: "Email" },
-            { href: links.twitter, text: "Twitter" },
-            { href: links.telegram, text: "Telegram" },
-            { href: links.github, text: "Github" },
-          ]}
-        />
+      <div className="relative mx-auto flex w-full max-w-maxWidth items-end gap-4 py-1 md:py-2">
+        <div className="flex-1">
+          <FooterGroup
+            title="SOCIALS"
+            className="pb-0 md:py-0"
+            isMagnetic={true}
+            links={[
+              { href: links.email, text: "Email" },
+              { href: links.linkedin, text: "LinkedIn" },
+              // { href: links.telegram, text: "Telegram" },
+              // { href: links.github, text: "Github" },
+            ]}
+          />
+        </div>
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-center text-xs font-semibold text-[#a3a3a3] md:text-sm">
+          © AB.MAHYOUB
+        </div>
+        <div className="flex-1" />
       </div>
     </footer>
   );

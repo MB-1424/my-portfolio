@@ -110,15 +110,15 @@ export function AboutWrapper({}) {
       {/* <AboutMarquee></AboutMarquee> */}
       <div className="customBorder anime mx-auto my-[1.5em] h-[2px] w-[calc(100%_-_20px)] self-start rounded-full bg-colorSecondaryLight opacity-30 "></div>
 
-      <a
+      {/* <a
         href={links.work}
         className="anime relative flex h-[260px] w-full items-center justify-center md:h-[380px]"
       >
-        <div className="flex flex-col items-center justify-center">
-          <div className="anime">
+        <div className="flex flex-col items-center justify-center"> */}
+      {/* <div className="anime">
             <h2 className="work_heading mask">{text.main}</h2>
-          </div>
-          {/* <a href={links.work} className="work__cto anime">
+          </div> */}
+      {/* <a href={links.work} className="work__cto anime">
             <div className="left">
               <svg
                 width="21"
@@ -151,8 +151,8 @@ export function AboutWrapper({}) {
               </svg>
             </div>
           </a> */}
-        </div>
-        <div className="section3__video overflow-hidden rounded-3xl bg-black md:rounded-[3rem]">
+      {/* </div> */}
+      {/* <div className="section3__video overflow-hidden rounded-3xl bg-black md:rounded-[3rem]">
           <video
             className=""
             id="video"
@@ -162,8 +162,8 @@ export function AboutWrapper({}) {
             loop
             src="/video/transcode.mp4"
           ></video>
-        </div>
-      </a>
+        </div> */}
+      {/* </a> */}
     </main>
   );
 }
