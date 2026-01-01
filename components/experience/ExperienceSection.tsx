@@ -14,7 +14,7 @@ export default function ExperienceSection() {
   return (
     <section
       id="experience"
-      className="section home-scroll-section section__4 experience-section relative w-full !justify-start bg-colorLight text-colorDark"
+      className="section home-scroll-section section__4 experience-section relative w-full !justify-start bg-colorLight text-colorDark max-h-[100vh] overflow-y-auto md:max-h-none md:overflow-visible"
     >
       <div className="mx-auto w-full max-w-maxWidth px-4 pb-14 pt-14 sm:px-6 md:px-paddingX md:pb-20 md:pt-20">
         <SectionTitle title="ABOUT ME" />
