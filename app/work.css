@@ -366,10 +366,11 @@ ul {
 .modalCard {
   position: relative;
   max-height: 92vh;
-  overflow: hidden;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   gap: 14px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .modalClose {
@@ -427,12 +428,12 @@ ul {
 }
 
 .modalBody {
-  overflow: auto;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  flex: 1;
-  min-height: 0;
+  flex: none;
+  min-height: auto;
   padding-right: 6px;
   margin-right: -2px;
   padding-bottom: 72px;
