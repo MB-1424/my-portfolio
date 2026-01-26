@@ -18,15 +18,14 @@ export function BgImage({ total, item, i }: BgImageProps) {
     <div
       style={{
         filter: `brightness(85%)`,
-        zIndex: `${
-          Math.floor(total / 2) == i ? 520 : Math.floor(Math.random() * 10)
-        }`,
+        zIndex: Math.floor(total / 2) === i ? 520 : (i * 7) % 10,
       }}
       className="bgImages drop-shadow-smd absolute h-[150px] w-[150px] origin-[center_center] translate-x-[-50%] translate-y-[0%] overflow-hidden rounded-3xl md:h-[250px] md:w-[250px]"
     >
       <Image
         src={item.imgLink}
         fill={true}
+        sizes="(max-width: 768px) 150px, 250px"
         alt=""
         className="h-full !w-auto min-w-full max-w-none object-cover"
       />
