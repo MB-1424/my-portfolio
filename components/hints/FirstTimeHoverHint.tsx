@@ -42,7 +42,6 @@ export default function FirstTimeHoverHint({
 }: FirstTimeHoverHintProps) {
   const [visible, setVisible] = useState(false);
   const [animationData, setAnimationData] = useState<Record<string, unknown> | null>(null);
-  const [showClose, setShowClose] = useState(false);
 
   const targetElRef = useRef<HTMLElement | null>(null);
   const observerRef = useRef<MutationObserver | null>(null);
@@ -97,12 +96,8 @@ export default function FirstTimeHoverHint({
     };
   }, [lottiePath, visible]);
 
-  // Attach click listener to target; show close button if target not found quickly.
   useEffect(() => {
     if (!visible || !targetSelector) return;
-
-    // Show manual close shortly after mount to guarantee a way out.
-    setShowClose(true);
 
     const handleTargetActivate = () => dismiss();
 
@@ -127,11 +122,6 @@ export default function FirstTimeHoverHint({
     };
 
     const foundImmediately = attachListener();
-
-    // Fallback: if not found within 2s, reveal close button (already true).
-    timeoutRef.current = window.setTimeout(() => {
-      if (!targetElRef.current) setShowClose(true);
-    }, 2000);
 
     // Keep watching for the target to appear (e.g., lazy render).
     if (!foundImmediately) {
@@ -208,8 +198,14 @@ export default function FirstTimeHoverHint({
       aria-live="polite"
       role="status"
     >
-      <div className="relative inline-flex items-center pointer-events-auto select-none">
-        <div className="pointer-events-none h-36 w-36 shrink-0">
+      <button
+        type="button"
+        onClick={dismiss}
+        className="relative inline-flex items-center pointer-events-auto select-none cursor-pointer transition-transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 rounded-full"
+        aria-label="Click to dismiss hint"
+        title="Click to dismiss"
+      >
+        <div className="h-36 w-36 shrink-0">
           {animationData ? (
             <Lottie
               animationData={animationData}
@@ -221,17 +217,7 @@ export default function FirstTimeHoverHint({
             <div className="h-full w-full animate-pulse rounded-full bg-white/20" />
           )}
         </div>
-        {showClose && (
-          <button
-            type="button"
-            onClick={dismiss}
-            className="pointer-events-auto absolute -right-2 -top-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-neutral-900/70 text-white transition hover:bg-neutral-800/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-            aria-label="Dismiss hint"
-          >
-            ×
-          </button>
-        )}
-      </div>
+      </button>
     </div>
   );
 }

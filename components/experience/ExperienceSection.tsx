@@ -5,6 +5,12 @@ import Image from "next/image";
 import CardSwap, { Card } from "@/components/ui/CardSwap";
 import SectionTitle from "@/components/ui/SectionTitle";
 import VariableProximity from "@/components/ui/VariableProximity";
+import dynamic from "next/dynamic";
+
+const SimpleHoverHint = dynamic(
+  () => import("@/components/hints/SimpleHoverHint"),
+  { ssr: false }
+);
 
 export default function ExperienceSection() {
   const introRef = useRef<HTMLDivElement | null>(null);
@@ -46,6 +52,10 @@ export default function ExperienceSection() {
               "Python",
             ]}
           />
+          {/* Hover hint above intro */}
+          <div className="absolute -right-4 -top-8 md:-right-8 md:-top-12">
+            <SimpleHoverHint storageKey="experienceHoverHint_v1" />
+          </div>
         </div>
 
         <div className="my-12 grid w-full gap-8 sm:my-16 lg:grid-cols-[1.1fr,1fr]">
