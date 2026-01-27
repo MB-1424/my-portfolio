@@ -52,9 +52,10 @@ export default function ExperienceSection() {
               "Python",
             ]}
           />
-          {/* Hover hint above intro */}
-          <div className="absolute -right-4 -top-8 md:-right-8 md:-top-12">
-            <SimpleHoverHint storageKey="experienceHoverHint_v1" />
+          {/* Hover hint above intro 
+           */}
+        <div className="absolute  -top-5  md:-top-5">
+              <SimpleHoverHint storageKey="experienceHoverHint_v1" />
           </div>
         </div>
 
