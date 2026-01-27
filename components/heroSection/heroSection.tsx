@@ -33,6 +33,7 @@ export function HeroSection({}) {
 
     const interactionHandler = () => triggerRender();
     window.addEventListener("pointerdown", interactionHandler, { once: true });
+    window.addEventListener("touchstart", interactionHandler, { once: true, passive: true });
     window.addEventListener("scroll", interactionHandler, {
       once: true,
       passive: true,
@@ -61,6 +62,7 @@ export function HeroSection({}) {
 
     return () => {
       window.removeEventListener("pointerdown", interactionHandler);
+      window.removeEventListener("touchstart", interactionHandler);
       window.removeEventListener("scroll", interactionHandler);
       cancelIdleCb(idleId);
       observer?.disconnect();
