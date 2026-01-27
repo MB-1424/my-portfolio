@@ -1,5 +1,5 @@
 import { BgImage } from "@/components/contactSection/bgImage";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useAppSelector } from "@/hooks/reduxHooks";
 import { memo } from "react";
@@ -117,70 +117,77 @@ export const BgImagesContainer = ({
 }: {
   bgImagesSharedRef: React.MutableRefObject<gsap.core.Tween | null>;
 }) => {
-  shuffle(bgImagesData);
-
+  const [images] = useState(() => shuffle([...bgImagesData]));
   const bgImagesTween = useRef<gsap.core.Tween | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const GAP = 6;
-  useEffect(() => {
-    bgImagesTween.current = gsap.fromTo(
-      ".bgImages",
-      {
-        y: "200%",
-        x: "0%",
-        left: "50%",
-        rotate: 0,
-        top: "50%",
+  useLayoutEffect(() => {
+    if (!containerRef.current) return;
+    const ctx = gsap.context(() => {
+      bgImagesTween.current = gsap.fromTo(
+        ".bgImages",
+        {
+          y: "200%",
+          x: "0%",
+          left: "50%",
+          rotate: 0,
+          top: "50%",
 
-        // filter: "blur(20px)",
-      },
-      {
-        y: "-50%",
-        x: "0%",
-        left: function (index, target, targets) {
-          return 90 + index * -GAP + "%";
+          // filter: "blur(20px)",
         },
-        top: function (index, target, targets) {
-          return getRandDistrubutedTop(index, targets) + "%";
-        },
-        rotate: function (index, target, targets) {
-          return getRandValues(-30, 30);
-        },
-        // filter: "blur(0px)",
+        {
+          y: "-50%",
+          x: "0%",
+          left: function (index, target, targets) {
+            return 90 + index * -GAP + "%";
+          },
+          top: function (index, target, targets) {
+            return getRandDistrubutedTop(index, targets) + "%";
+          },
+          rotate: function (index, target, targets) {
+            return getRandValues(-30, 30);
+          },
+          // filter: "blur(0px)",
 
-        // paused: true,
-        delay: 0.8,
-        stagger: 0.08,
-        duration: 1,
-        ease: CustomEase.create("custom", "M0,0,C0.5,0,0,1,1,1"),
-      },
-    );
+          // paused: true,
+          delay: 0.8,
+          stagger: 0.08,
+          duration: 1,
+          ease: CustomEase.create("custom", "M0,0,C0.5,0,0,1,1,1"),
+        },
+      );
 
-    bgImagesSharedRef.current = gsap.fromTo(
-      ".footer__img_wrapper",
-      {
-        minWidth: "100%",
-        minHeight: "100%",
-      },
-      {
-        minWidth: "110%",
-        minHeight: "150%",
-        paused: true,
-        delay: 0.1,
-        duration: 0.6,
-        ease: CustomEase.create("custom", "M0,0,C0.5,0,0,1,1,1"),
-      },
-    );
+      bgImagesSharedRef.current = gsap.fromTo(
+        ".footer__img_wrapper",
+        {
+          minWidth: "100%",
+          minHeight: "100%",
+        },
+        {
+          minWidth: "110%",
+          minHeight: "150%",
+          paused: true,
+          delay: 0.1,
+          duration: 0.6,
+          ease: CustomEase.create("custom", "M0,0,C0.5,0,0,1,1,1"),
+        },
+      );
+    }, containerRef);
 
     return () => {
-      bgImagesTween.current?.kill();
-      bgImagesSharedRef.current?.kill();
+      ctx.revert();
+      bgImagesTween.current = null;
+      bgImagesSharedRef.current = null;
     };
-  });
+  }, []);
 
   return (
-    <div className="footer__img_wrapper bg-transparent-foreground  !absolute flex h-[100%] w-[100%] items-center justify-center overflow-hidden ">
-      {bgImagesData.map((item, i) => (
-        <BgImage key={item.id} total={bgImagesData.length} item={item} i={i} />
+    <div
+      ref={containerRef}
+      className="footer__img_wrapper bg-transparent-foreground  !absolute flex h-[100%] w-[100%] items-center justify-center overflow-hidden "
+    >
+      {images.map((item, i) => (
+        <BgImage key={item.id} total={images.length} item={item} i={i} />
       ))}
     </div>
   );

@@ -26,6 +26,12 @@ import {
 } from "react-icons/si";
 import TiltedCard from "@/components/ui/TiltedCard";
 import GlareHover from "@/components/ui/GlareHover";
+import dynamic from "next/dynamic";
+
+const SimpleHoverHint = dynamic(
+  () => import("@/components/hints/SimpleHoverHint"),
+  { ssr: false }
+);
 
 const techLogos = [
   // Programming
@@ -176,7 +182,7 @@ export default function AboutSection() {
           {/* Block 2: About Me */}
           <SectionTitle title="EXPERIENCE" />
           <div className="mt-8 flex w-full flex-col gap-4 sm:mt-10 sm:gap-6 md:gap-8">
-            {experiences.map((experience) => (
+            {experiences.map((experience, index) => (
               <GlareHover
                 key={experience.title}
                 glareColor="#ffffff"
@@ -208,7 +214,7 @@ export default function AboutSection() {
                       </ul>
                     </div>
 
-                    <div className="mx-auto mt-3 h-20 w-20 self-start sm:mx-0 sm:mt-0 sm:h-24 sm:w-24 md:h-[180px] md:w-[180px] md:self-auto">
+                    <div className={`mx-auto mt-3 h-20 w-20 self-start sm:mx-0 sm:mt-0 sm:h-24 sm:w-24 md:h-[180px] md:w-[180px] md:self-auto ${index === 0 ? 'relative' : ''}`}>
                       <TiltedCard
                         imageSrc={experience.logoSrc}
                         altText={`${experience.title} logo`}
@@ -223,6 +229,13 @@ export default function AboutSection() {
                         showTooltip={false}
                         imageClassName="object-contain"
                       />
+                      {index === 0 && (
+                        <div className="absolute -right-2 -bottom-12 md:-right-8 md:-bottom-16">
+                          <SimpleHoverHint
+                            storageKey="aboutHoverHint_v2"
+                          />
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

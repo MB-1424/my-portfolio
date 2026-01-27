@@ -38,6 +38,7 @@ export const shuffle = (array: any[]) => {
 };
 
 export const isDesktop = () => {
+  if (typeof window === "undefined") return false;
   return screen.width > 540;
 };
 

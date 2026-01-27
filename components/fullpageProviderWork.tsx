@@ -112,7 +112,7 @@ const FullpageProviderWork = ({
         );
     }
 
-    var flex = screen.width > 540 ? 17 : 5;
+    var flex = typeof window !== "undefined" && screen.width > 540 ? 17 : 5;
     if (direction == "down") {
       console.log();
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import CustomEase from "gsap/CustomEase";
@@ -15,40 +15,52 @@ import Framer from "@/public/svg/framer.svg";
 import Webflow from "@/public/svg/webflow.svg";
 
 export function AboutMarquee({}) {
-  useEffect(() => {
-    gsap.fromTo(
-      `.rollingText2`,
-      {
-        xPercent: 0,
-      },
-      {
-        xPercent: -100,
-        duration: 20,
-        ease: CustomEase.create("custom", "M0,0,C0,0,1,1,1,1"),
-        repeat: -1,
-      },
-    );
+  const marqueeRef = useRef<HTMLDivElement>(null);
 
-    gsap.fromTo(
-      `.rollingText3`,
-      {
-        xPercent: 0,
-      },
-      {
-        xPercent: -100,
-        duration: 20,
-        ease: CustomEase.create("custom", "M0,0,C0,0,1,1,1,1"),
-        repeat: -1,
-      },
-    );
-    gsap.set(`.rollingText3`, {
-      //@ts-ignore
-      left: `${document.querySelector(".rollingText3").offsetWidth}`,
-    });
-  });
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const ease = CustomEase.create("custom", "M0,0,C0,0,1,1,1,1");
+      gsap.fromTo(
+        `.rollingText2`,
+        {
+          xPercent: 0,
+        },
+        {
+          xPercent: -100,
+          duration: 20,
+          ease,
+          repeat: -1,
+        },
+      );
+
+      gsap.fromTo(
+        `.rollingText3`,
+        {
+          xPercent: 0,
+        },
+        {
+          xPercent: -100,
+          duration: 20,
+          ease,
+          repeat: -1,
+        },
+      );
+      const rolling3 = marqueeRef.current?.querySelector(
+        ".rollingText3",
+      ) as HTMLElement | null;
+      if (rolling3) {
+        gsap.set(rolling3, {
+          left: `${rolling3.offsetWidth}`,
+        });
+      }
+    }, marqueeRef);
+
+    return () => ctx.revert();
+  }, []);
   return (
     <div
       id="one"
+      ref={marqueeRef}
       className="anime mt-[2em] grow rounded-3xl bg-colorSecondaryHalfLight md:mt-[4em] md:rounded-[3rem]"
     >
       <div className="slider_wip">
