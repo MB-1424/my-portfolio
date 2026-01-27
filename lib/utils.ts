@@ -38,7 +38,8 @@ export const shuffle = (array: any[]) => {
 };
 
 export const isDesktop = () => {
-  return typeof window !== "undefined" && screen.width > 540;
+  if (typeof window === "undefined") return false;
+  return screen.width > 540;
 };
 
 export function getJoinedDate(
