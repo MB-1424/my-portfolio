@@ -39,9 +39,10 @@ export function HeroSection({}) {
       passive: true,
     });
 
+    // Faster idle callback for mobile devices
     const idleCb =
       (window as any).requestIdleCallback ||
-      ((cb: () => void) => window.setTimeout(cb, 1200));
+      ((cb: () => void) => window.setTimeout(cb, 300));
     const cancelIdleCb =
       (window as any).cancelIdleCallback || ((id: number) => clearTimeout(id));
     const idleId = idleCb(() => triggerRender());
