@@ -31,6 +31,17 @@ export function HeroSection({}) {
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduced) return;
 
+    // Detect mobile devices - load WebGL immediately for better UX
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
+                     window.matchMedia("(max-width: 768px)").matches;
+    
+    if (isMobile) {
+      // On mobile: load immediately without waiting
+      triggerRender();
+      return;
+    }
+
+    // On desktop: lazy load on interaction
     const interactionHandler = () => triggerRender();
     window.addEventListener("pointerdown", interactionHandler, { once: true });
     window.addEventListener("touchstart", interactionHandler, { once: true, passive: true });
@@ -39,7 +50,6 @@ export function HeroSection({}) {
       passive: true,
     });
 
-    // Faster idle callback for mobile devices
     const idleCb =
       (window as any).requestIdleCallback ||
       ((cb: () => void) => window.setTimeout(cb, 300));
