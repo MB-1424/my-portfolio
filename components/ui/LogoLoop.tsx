@@ -372,10 +372,9 @@ export const LogoLoop = React.memo<LogoLoopProps>(
         const content = isNodeItem ? (
           <span
             className={cx(
-              "inline-flex items-center",
-              "motion-reduce:transition-none",
+              "inline-flex items-center motion-reduce:transition-none",
               scaleOnHover &&
-                "ease-[cubic-bezier(0.4_0_0.2_1)] group-hover/item:scale-120 transition-transform duration-300",
+                "ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-120 transition-transform duration-300",
             )}
             aria-hidden={!!(item as any).href && !(item as any).ariaLabel}
           >
@@ -384,12 +383,9 @@ export const LogoLoop = React.memo<LogoLoopProps>(
         ) : (
           <img
             className={cx(
-              "block h-[var(--logoloop-logoHeight)] w-auto object-contain",
-              "pointer-events-none [-webkit-user-drag:none]",
-              "[image-rendering:-webkit-optimize-contrast]",
-              "motion-reduce:transition-none",
+              "pointer-events-none block h-[var(--logoloop-logoHeight)] w-auto [-webkit-user-drag:none] object-contain [image-rendering:-webkit-optimize-contrast] motion-reduce:transition-none",
               scaleOnHover &&
-                "ease-[cubic-bezier(0.4_0_0.2_1)] group-hover/item:scale-120 transition-transform duration-300",
+                "ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-120 transition-transform duration-300",
             )}
             src={(item as any).src}
             srcSet={(item as any).srcSet}

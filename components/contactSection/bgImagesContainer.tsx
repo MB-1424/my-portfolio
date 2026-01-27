@@ -117,13 +117,10 @@ export const BgImagesContainer = ({
 }: {
   bgImagesSharedRef: React.MutableRefObject<gsap.core.Tween | null>;
 }) => {
-  const [images, setImages] = useState(bgImagesData);
+  const [images] = useState(() => shuffle([...bgImagesData]));
   const bgImagesTween = useRef<gsap.core.Tween | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const GAP = 6;
-  useEffect(() => {
-    setImages(shuffle([...bgImagesData]));
-  }, []);
   useLayoutEffect(() => {
     if (!containerRef.current) return;
     const ctx = gsap.context(() => {

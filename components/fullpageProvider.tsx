@@ -86,7 +86,7 @@ const FullpageProvider = ({ children }: { children: React.ReactNode }) => {
       }
     }
 
-    var flex = screen.width > 540 ? 17 : 5;
+    var flex = typeof window !== "undefined" && screen.width > 540 ? 17 : 5;
     if (direction == "down") {
       gsap
         .timeline()

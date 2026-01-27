@@ -18,7 +18,7 @@ const runSectionAnimation = (index: number, direction: Direction) => {
   const rounded = direction === "down" ? `.s${index} .rounded__div__down` : `.s${index} .rounded__div__up`;
   const yFrom = direction === "down" ? "30vh" : "-30vh";
   const stagger = direction === "down" ? 0.03 : -0.03;
-  const flex = screen.width > 540 ? 17 : 5;
+  const flex = typeof window !== "undefined" && screen.width > 540 ? 17 : 5;
 
   gsap
     .timeline()
